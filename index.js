@@ -80,3 +80,32 @@ keyboardWrap.innerHTML = `
             <div class="symbol key key__small key__gray_dark key__right key__arrow" id="ArrowRight">▶</div>
             <div class="key key__small key__gray_dark key__alt_right" id="AltRight">Alt</div>
 `;
+const keys = document.querySelectorAll('.key');
+const textArea = document.querySelector('.textarea');
+let capsLock = 0;
+const symbolsArrShift = ['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', '|', ':', '"', '<', '>', '?'];
+const symbolsArr = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', '[', ']', '\\', ';', '\'', '/', ',', '.'];
+const symbolsEng = ['`', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', 'z', 'x', 'c', 'v', 'b', 'n', 'm', '/', ',', '.'];
+const symbolsRus = ['ё', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.'];
+const dontTouchSymbols = ['`', '[', ']', ';', '\'', ',', '/', 'ё', 'х', 'ъ', 'ж', 'э', 'б', 'ю'];
+const allKeyEn = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", 'Enter', 'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', '/', ',', '.', '▲', 'Shift', 'Ctrl', 'Win', 'Alt', '', '◀', '▼', '▶', 'Alt'];
+const allKeyRus = ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', '\\', 'CapsLock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter', 'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', '▲', 'Shift', 'Ctrl', 'Win', 'Alt', '', '◀', '▼', '▶', 'Alt'];
+const symbols = document.querySelectorAll('.key[data-name = "symbol"]');
+const langSymbols = document.querySelectorAll('.key[data-lang = "language"]');
+const letters = document.querySelectorAll('.key[data-name="letter"]');
+const toushSymbols = document.querySelectorAll('.symbol');
+localStorage.getItem('lang');
+//? =======================================start page==========================================
+const getStartedPage = () => {
+   if (localStorage.lang === 'undeiend' || localStorage.lang === 'en') {
+      localStorage.lang = 'en'
+     for (let i = 0; i < keys.length; i++){
+       keys[i].innerHTML = allKeyEn[i]
+      }
+   } else {
+      for (let i = 0; i < keys.length; i++){
+         keys[i].innerHTML = allKeyRus[i]
+      }
+   }
+}
+getStartedPage()
