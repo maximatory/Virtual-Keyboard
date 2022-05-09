@@ -1,0 +1,14 @@
+.keyboard__wrap {
+   width: 700px;
+   height: 260px;
+   padding: 5px;
+   background-color: $color-bg;
+   border-radius: 7px;
+   border: 4px solid $color-dark-gray;
+   display: flex;
+   flex-wrap: wrap;
+   row-gap: 10px;
+   column-gap: 1px;
+   justify-content: space-between;
+}
+
