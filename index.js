@@ -109,3 +109,325 @@ const getStartedPage = () => {
    }
 }
 getStartedPage()
+//? =======================================active keys==========================================
+document.addEventListener('keydown', (event) => {
+   keys.forEach(el => {
+      if (el.id == event.code) {
+         el.classList.add('active')
+      }
+   })
+});
+document.addEventListener('keyup', (event) => {
+   keys.forEach(el => {
+      if (el.id == event.code) {
+         el.classList.remove('active')
+      } 
+   })
+})
+//? =======================================переключение языка==========================================
+let ctrlAcrive = 0;
+let alrActive = 0;
+document.addEventListener('keydown', (event) => {
+   if (event.key == 'Control') {
+      ctrlAcrive = 1
+      getLangTumbler()
+      getLangKeys()
+   }
+})
+document.addEventListener('keyup', (event) => {
+   if (event.key == 'Control') {
+      ctrlAcrive = 0
+      getLangTumbler()
+   }
+})
+document.addEventListener('keydown', (event) => {
+   if (event.key === 'Alt') {
+      alrActive = 1;
+      getLangTumbler()
+      getLangKeys()
+   }
+})
+document.addEventListener('keyup', (event) => {
+   if (event.key === 'Alt') {
+      alrActive = 0;
+      getLangTumbler()
+   }
+})
+
+function getLangTumbler() {
+   if (alrActive === 1 && ctrlAcrive === 1) {
+      if (localStorage.lang === 'en') {
+         localStorage.lang = 'rus'
+      } else {
+         localStorage.lang = 'en'
+      }
+   }
+}
+function getLangKeys() {
+   if (localStorage.lang === 'rus') {
+      for (let i = 0; i < langSymbols.length; i++){
+         langSymbols[i].innerHTML = symbolsRus[i]
+      }
+   }
+   if (localStorage.lang === 'en') {
+      for (let i = 0; i < langSymbols.length; i++){
+         langSymbols[i].innerHTML = symbolsEng[i]
+      }
+   }
+}
+//? =======================================   shift   ==========================================
+document.addEventListener('keydown', (event) => {
+   if (event.key == 'Shift') {
+
+      if (capsLock === 0) {
+         letters.forEach(el => {
+            el.innerHTML = el.innerHTML.toUpperCase()
+            
+         })  
+      } else {
+         letters.forEach(el => {
+            el.innerHTML = el.innerHTML.toLowerCase();
+         })
+      }
+      if (localStorage.lang === 'rus') {
+         for (let i = 0; i < symbols.length; i++){
+            if (!dontTouchSymbols.includes(symbolsArr[i])) {
+               symbols[i].innerHTML = symbolsArrShift[i]  
+            } 
+         }
+      } else {
+         for (let i = 0; i < symbols.length; i++){
+               symbols[i].innerHTML = symbolsArrShift[i]  
+         }
+      }
+   }
+})
+document.addEventListener('keyup', (event) => {
+   if (event.key == 'Shift') {
+      if (capsLock === 1) {
+         letters.forEach(el => {
+            el.innerHTML = el.innerHTML.toUpperCase()
+            
+         })  
+      } else {
+         letters.forEach(el => {
+            el.innerHTML = el.innerHTML.toLowerCase();
+           
+         })
+      }
+      if (localStorage.lang === 'rus') {
+         for (let i = 0; i < symbols.length; i++){
+            if (!dontTouchSymbols.includes(symbolsArr[i])) {
+               symbols[i].innerHTML = symbolsArr[i] 
+            }
+         }
+      } else {
+         for (let i = 0; i < symbols.length; i++){
+            symbols[i].innerHTML = symbolsArr[i]
+         }
+      }
+   }
+})
+document.addEventListener('mousedown', (event) => {
+   if (event.target.id == 'ShiftRight' || event.target.id == 'ShiftLeft') {
+
+      if (capsLock === 0) {
+         letters.forEach(el => {
+            el.innerHTML = el.innerHTML.toUpperCase()
+            
+         })  
+      } else {
+         letters.forEach(el => {
+            el.innerHTML = el.innerHTML.toLowerCase();
+         })
+      }
+      if (localStorage.lang === 'rus') {
+         for (let i = 0; i < symbols.length; i++){
+            if (!dontTouchSymbols.includes(symbolsArr[i])) {
+               symbols[i].innerHTML = symbolsArrShift[i]  
+            } 
+         }
+      } else {
+         for (let i = 0; i < symbols.length; i++){
+               symbols[i].innerHTML = symbolsArrShift[i]  
+         }
+      }
+   }
+})
+document.addEventListener('mouseup', (event) => {
+   if (event.target.id == 'ShiftRight' || event.target.id == 'ShiftLeft') {
+      if (capsLock === 1) {
+         letters.forEach(el => {
+            el.innerHTML = el.innerHTML.toUpperCase()
+            
+         })  
+      } else {
+         letters.forEach(el => {
+            el.innerHTML = el.innerHTML.toLowerCase();
+           
+         })
+      }
+      if (localStorage.lang === 'rus') {
+         for (let i = 0; i < symbols.length; i++){
+            if (!dontTouchSymbols.includes(symbolsArr[i])) {
+               symbols[i].innerHTML = symbolsArr[i] 
+            }
+         }
+      } else {
+         for (let i = 0; i < symbols.length; i++){
+            symbols[i].innerHTML = symbolsArr[i]
+         }
+      }
+   }
+})
+//? =======================================CapsLock==========================================
+document.addEventListener('keydown', (event) => {
+   if (event.key == 'CapsLock') {
+      capsLock = 1;
+      letters.forEach(el => {
+         el.innerHTML = el.innerHTML.toUpperCase()
+      })
+   }
+})
+document.addEventListener('keyup', (event) => {
+   if (event.key == 'CapsLock') {
+      capsLock = 0;
+      letters.forEach(el => {
+         el.innerHTML = el.innerHTML.toLowerCase();
+      })
+   }
+})
+let kapsLockMouse = 0
+document.addEventListener('click', (event) => {
+   if (event.target.id == 'CapsLock' && kapsLockMouse === 0) {
+      capsLock = 1;
+      letters.forEach(el => {
+         el.innerHTML = el.innerHTML.toUpperCase()
+      })
+      event.target.classList.add('active')
+   }
+   if(event.target.id == 'CapsLock' && kapsLockMouse === 1){
+      capsLock = 0;
+      letters.forEach(el => {
+         el.innerHTML = el.innerHTML.toLowerCase()
+      })
+      event.target.classList.remove('active')
+   }
+})
+document.addEventListener('click', (event) => {
+   if (event.target.id == 'CapsLock') {
+      kapsLockMouse === 0 ? kapsLockMouse = 1 : kapsLockMouse = 0;
+   }
+})
+//? =======================================для особых символов==========================================
+document.addEventListener('keydown', (event) => {
+   if (event.key == 'Shift' && localStorage.lang == 'rus' && capsLock == 0) { 
+      symbols[0].innerHTML = symbols[0].innerHTML.toUpperCase()
+      symbols[13].innerHTML = symbols[13].innerHTML.toUpperCase()
+      symbols[14].innerHTML = symbols[14].innerHTML.toUpperCase()
+      symbols[16].innerHTML = symbols[16].innerHTML.toUpperCase()
+      symbols[17].innerHTML = symbols[17].innerHTML.toUpperCase()
+      symbols[18].innerHTML = symbols[18].innerHTML.toUpperCase()
+      symbols[19].innerHTML = symbols[19].innerHTML.toUpperCase()
+   }
+   if (event.key == 'Shift' && localStorage.lang == 'rus' && capsLock == 1) { 
+      symbols[0].innerHTML = symbols[0].innerHTML.toLowerCase()
+      symbols[13].innerHTML = symbols[13].innerHTML.toLowerCase()
+      symbols[14].innerHTML = symbols[14].innerHTML.toLowerCase()
+      symbols[16].innerHTML = symbols[16].innerHTML.toLowerCase()
+      symbols[17].innerHTML = symbols[17].innerHTML.toLowerCase()
+      symbols[18].innerHTML = symbols[18].innerHTML.toLowerCase()
+      symbols[19].innerHTML = symbols[19].innerHTML.toLowerCase()
+   }
+})
+document.addEventListener('keyup', (event) => {
+   if (event.key == 'Shift' && localStorage.lang == 'rus' && capsLock == 0) { 
+      symbols[0].innerHTML = symbols[0].innerHTML.toLowerCase()
+      symbols[13].innerHTML = symbols[13].innerHTML.toLowerCase()
+      symbols[14].innerHTML = symbols[14].innerHTML.toLowerCase()
+      symbols[16].innerHTML = symbols[16].innerHTML.toLowerCase()
+      symbols[17].innerHTML = symbols[17].innerHTML.toLowerCase()
+      symbols[18].innerHTML = symbols[18].innerHTML.toLowerCase()
+      symbols[19].innerHTML = symbols[19].innerHTML.toLowerCase()
+   }
+   if (event.key == 'Shift' && localStorage.lang == 'rus' && capsLock == 1) { 
+      symbols[0].innerHTML = symbols[0].innerHTML.toUpperCase()
+      symbols[13].innerHTML = symbols[13].innerHTML.toUpperCase()
+      symbols[14].innerHTML = symbols[14].innerHTML.toUpperCase()
+      symbols[16].innerHTML = symbols[16].innerHTML.toUpperCase()
+      symbols[17].innerHTML = symbols[17].innerHTML.toUpperCase()
+      symbols[18].innerHTML = symbols[18].innerHTML.toUpperCase()
+      symbols[19].innerHTML = symbols[19].innerHTML.toUpperCase()
+   }
+})
+document.addEventListener('keydown', (event) => {
+   if (event.key == 'CapsLock' && localStorage.lang == 'rus') {
+      symbols[0].innerHTML = symbols[0].innerHTML.toUpperCase()
+      symbols[13].innerHTML = symbols[13].innerHTML.toUpperCase()
+      symbols[14].innerHTML = symbols[14].innerHTML.toUpperCase()
+      symbols[16].innerHTML = symbols[16].innerHTML.toUpperCase()
+      symbols[17].innerHTML = symbols[17].innerHTML.toUpperCase()
+      symbols[18].innerHTML = symbols[18].innerHTML.toUpperCase()
+      symbols[19].innerHTML = symbols[19].innerHTML.toUpperCase()
+   }
+})
+document.addEventListener('keyup', (event) => {
+   if (event.key == 'CapsLock' && localStorage.lang == 'rus') {
+      symbols[0].innerHTML = symbols[0].innerHTML.toLowerCase()
+      symbols[13].innerHTML = symbols[13].innerHTML.toLowerCase()
+      symbols[14].innerHTML = symbols[14].innerHTML.toLowerCase()
+      symbols[16].innerHTML = symbols[16].innerHTML.toLowerCase()
+      symbols[17].innerHTML = symbols[17].innerHTML.toLowerCase()
+      symbols[18].innerHTML = symbols[18].innerHTML.toLowerCase()
+      symbols[19].innerHTML = symbols[19].innerHTML.toLowerCase()
+   }
+})
+//? =======================================textarea==========================================
+// !===========toushSymbols
+document.addEventListener('keydown', (event) => {
+   toushSymbols.forEach(el => {
+      if (el.id == event.code) {
+         textArea.innerHTML += el.innerHTML
+      }
+   })
+   if (event.code === 'Enter') {
+      textArea.innerHTML = textArea.value + "\n";
+   }
+   if (event.code === 'Space') {
+      textArea.innerHTML += " ";
+      event.preventDefault();
+   }
+   if (event.code === 'Backspace') {
+         textArea.innerHTML = textArea.innerHTML.slice(0, -1)
+   }
+   if (event.code === 'Tab') {
+      textArea.innerHTML = textArea.value + "\t";
+      event.preventDefault();
+   }
+})
+// !===========clickSymbols
+document.addEventListener('click', (event) => {
+   keys.forEach(elem => {
+      if (event.target == elem) {
+         toushSymbols.forEach(el => {
+            if (el.id == elem.id) {
+               textArea.innerHTML += el.innerHTML
+            }
+         })
+         if (elem.id === 'Enter') {
+            textArea.innerHTML = textArea.value + "\n";
+         }
+         if (elem.id === 'Space') {
+            textArea.innerHTML += " ";
+            event.preventDefault();
+         }
+         if (elem.id === 'Backspace') {
+               textArea.innerHTML = textArea.innerHTML.slice(0, -1)
+         }
+         if (elem.id === 'Tab') {
+            textArea.innerHTML += "    "
+            event.preventDefault();
+         }
+      }
+   })
+})
