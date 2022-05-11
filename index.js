@@ -404,7 +404,7 @@ document.addEventListener('keydown', (event) => {
          textArea.innerHTML = textArea.innerHTML.slice(0, -1)
    }
    if (event.code === 'Tab') {
-      textArea.innerHTML = textArea.value + "\t";
+      textArea.innerHTML = textArea.value + "    ";
       getCursor()
       event.preventDefault();
    }
