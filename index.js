@@ -388,13 +388,16 @@ document.addEventListener('keydown', (event) => {
    toushSymbols.forEach(el => {
       if (el.id == event.code) {
          textArea.innerHTML += el.innerHTML
+         getCursor()
       }
    })
    if (event.code === 'Enter') {
       textArea.innerHTML = textArea.value + "\n";
+      getCursor()
    }
    if (event.code === 'Space') {
       textArea.innerHTML += " ";
+      getCursor()
       event.preventDefault();
    }
    if (event.code === 'Backspace') {
@@ -402,6 +405,7 @@ document.addEventListener('keydown', (event) => {
    }
    if (event.code === 'Tab') {
       textArea.innerHTML = textArea.value + "\t";
+      getCursor()
       event.preventDefault();
    }
 })
@@ -412,13 +416,16 @@ document.addEventListener('click', (event) => {
          toushSymbols.forEach(el => {
             if (el.id == elem.id) {
                textArea.innerHTML += el.innerHTML
+               getCursor()
             }
          })
          if (elem.id === 'Enter') {
             textArea.innerHTML = textArea.value + "\n";
+            getCursor()
          }
          if (elem.id === 'Space') {
             textArea.innerHTML += " ";
+            getCursor()
             event.preventDefault();
          }
          if (elem.id === 'Backspace') {
@@ -426,8 +433,18 @@ document.addEventListener('click', (event) => {
          }
          if (elem.id === 'Tab') {
             textArea.innerHTML += "    "
+            getCursor()
             event.preventDefault();
          }
       }
    })
 })
+
+function getCursor() {
+   return textArea.innerHTML = textArea.innerHTML.split('').map(el => {
+      if (el !== '|') {
+         return el
+      }
+   }).join("") + "|"
+}
+
