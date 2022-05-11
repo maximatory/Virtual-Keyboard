@@ -1,0 +1,63 @@
+.key {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   color: $color-light;
+   border-radius: 7px;
+   height: 40px;
+   cursor: pointer;
+   &:hover{
+      background-color: $color-hover;
+      transition: all ease-in-out 0.2s;
+   }
+   &:active{
+      background-color: $color-active;
+   }
+}
+
+.key__small {
+   width: 40px;
+}
+
+.key__gray {
+   background-color: $color-gray;
+}
+
+.key__gray_dark {
+   background-color: $color-dark-gray;
+}
+
+// arrow
+.key__arrow {
+   font-size: 10px;
+}
+
+// клавиши
+.key__backspace{
+   width: 100px;
+}
+
+.key__tab {
+   width: 100px;
+}
+
+.key__caps, .key__shift_left {
+   width: 100px;
+}
+
+.key__enter, .key__shift_right {
+   width: 86px;
+}
+
+.key__ctrl_left {
+   width: 63px;
+}
+
+.key__space {
+   width: 343px;
+}
+
+.active {
+   background-color: $color-active;
+   transition: all ease-in-out 0.2s;
+}
